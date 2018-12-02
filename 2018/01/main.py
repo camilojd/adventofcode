@@ -4,10 +4,6 @@ from itertools import cycle
 freqs = defaultdict(int)
 freqs[0] += 1
 
-def extract_sign_and_number(line):
-    sign, number = line[0:1], line[1:]
-    return sign, int(number)
-
 fh = open('input.txt', 'r')
 values = []
 for line in fh:
@@ -23,11 +19,8 @@ for v in cycle(values):
         # no need to continue
         break
 
-    sign, number = extract_sign_and_number(v)
-    if sign == '+':
-        current += number
-    else:
-        current -= number
+    number = int(v)
+    current += number
 
     freqs[current] += 1
     if freqs[current] == 2 and not first_repeated_found:
